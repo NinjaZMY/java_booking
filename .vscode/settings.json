@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Naruto Sage Mode",
+    "workbench.colorCustomizations": {
+        "editorInfo.foreground": "#0080ff6a",
+        "titleBar.activeBackground": "#3e4452dd",
+        "activityBar.background": "#323846aa"
+    }
+}
