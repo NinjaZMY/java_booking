@@ -32,7 +32,7 @@ export class AppComponent {
     this.isModalOpen = true;
   }
 
-  closeModal(C?: any) {
+  closeModal(C?: boolean) {
     if (arguments.length == 1) {
       C = confirm("do you really wanna close the modal ?")
       if (C)

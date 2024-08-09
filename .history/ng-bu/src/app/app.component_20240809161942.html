@@ -15,8 +15,8 @@
 
 <!-- Modal -->
 <div *ngIf="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-  (click)="closeModal('c')">
-  <!-- (click)="preventClose($event)"  -->
+  (click)="closeModal()" >
+<!--  -- -->
   <div #modal class="bg-white p-6 rounded-lg shadow-lg cursor-move relative" (mousedown)="startDragging($event)"
     (click)="preventClose($event)"
     [ngStyle]="{ top: position.top + 'px', left: position.left + 'px', position: 'absolute' }">

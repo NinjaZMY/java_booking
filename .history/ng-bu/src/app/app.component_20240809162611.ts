@@ -17,7 +17,6 @@ export class AppComponent {
   offsetX = 0;
   offsetY = 0;
   isModalOpen = false;
-  falseModal = " this.isModalOpen = false;";
 
   @ViewChild('modal') modalElement!: ElementRef;
 
@@ -32,16 +31,14 @@ export class AppComponent {
     this.isModalOpen = true;
   }
 
-  closeModal(C?: any) {
-    if (arguments.length == 1) {
+  closeModal(C?: boolean) {
+    if (typeof C == "undefined") {
       C = confirm("do you really wanna close the modal ?")
       if (C)
-        eval(this.falseModal)
+        this.isModalOpen = false;
 
     }
-    else
-      eval(this.falseModal)
-
+    else 
   }
 
   onButtonClick() {
