@@ -1,10 +1,4 @@
-import {
-  Component,
-  HostListener,
-  Input,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, HostListener, Input, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
@@ -13,13 +7,14 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   c: any = undefined;
-  log = console.log;
+  log = console.log
   //Cmd:object = {}
-  negate = () => (this.isModalOpen = false);
+  negate = () => this.isModalOpen = false
 
   // Current Commit made waiting for push
   //this is a Clear Reminder for you to push it to github, git push let's go
@@ -31,35 +26,29 @@ export class AppComponent {
   offsetX = 0;
   offsetY = 0;
   isModalOpen = false;
-  falseModal = ' this.isModalOpen = false;';
+  falseModal = " this.isModalOpen = false;";
 
   @ViewChild('modal') modalElement!: ElementRef;
 
-  onTriggerExec(cmd: Function, trigger?: boolean) {
-    if (arguments.length == 1) cmd();
-    else {
-      if (trigger) cmd();
-    }
-  }
+  /*   ngAfterViewInit() {
+      if (this.isModalOpen) {
+        this.centerModal();
+      }
+    } */
 
   openModal() {
-    this.setInitialModalPosition(); // Calculate position before showing
+    this.setInitialModalPosition();  // Calculate position before showing
     this.isModalOpen = true;
   }
 
   closeModal(C?: any) {
-    const fn = this.negate;
     if (arguments.length == 1) {
-      C = confirm('do you really wanna close the modal ?');
-      /*       if (C)
-              this.negate()
-      // this going to be replaced by the expression below
-      */
-      this.onTriggerExec(fn, C);
-    } //end of the positive true part if arg.len==true part
+      C = confirm("do you really wanna close the modal ?")
+      if (C)
+        this.negate()
+    }
     else
-      this.onTriggerExec(fn);
-    //end of if arg.len if condition
+      this.negate()
 
     // Current Commit made waiting for push
     //this is a Clear Reminder for you to push it to github, git push let's go
@@ -70,6 +59,7 @@ export class AppComponent {
     // Current Commit made waiting for push
     //this is a Clear Reminder for you to push it to github, git push let's go
     // Current Commit made waiting for push
+
   }
 
   onButtonClick() {
@@ -80,6 +70,8 @@ export class AppComponent {
   preventClose(event: MouseEvent) {
     event.stopPropagation();
   }
+
+
 
   startDragging(event: MouseEvent) {
     this.isDragging = true;
@@ -99,53 +91,56 @@ export class AppComponent {
   onMouseUp() {
     this.isDragging = false;
   }
-  // Current Commit made waiting for push
-  //this is a Clear Reminder for you to push it to github, git push let's go
-  // Current Commit made waiting for push
+      // Current Commit made waiting for push
+                                                          //this is a Clear Reminder for you to push it to github, git push let's go
+      // Current Commit made waiting for push
 
   // Listen for keydown events to detect "Esc" key
-  @HostListener('document:keydown.escape', ['$event']) handleEscape(
-    event: KeyboardEvent,
-    c: any = this.c
-  ) {
-    // Current Commit made waiting for push
-    //this is a Clear Reminder for you to push it to github, git push let's go
-    // Current Commit made waiting for push
+  @HostListener('document:keydown.escape', ['$event']) handleEscape(event: KeyboardEvent, c: any = this.c) {
+                // Current Commit made waiting for push
+                              //this is a Clear Reminder for you to push it to github, git push let's go
+                 // Current Commit made waiting for push
 
     if (this.isModalOpen) {
       // Current Commit made waiting for push
-      //this is a Clear Reminder for you to push it to github, git push let's go
+        //this is a Clear Reminder for you to push it to github, git push let's go
       // Current Commit made waiting for push
 
       this.closeModal(c);
-      // Current Commit made waiting for push
-      //this is a Clear Reminder for you to push it to github, git push let's go
-      // Current Commit made waiting for push
+              // Current Commit made waiting for push
+                  //this is a Clear Reminder for you to push it to github, git push let's go
+               // Current Commit made waiting for push
+
+
     }
   }
 
-  // Current Commit made waiting for push
-  //this is a Clear Reminder for you to push it to github, git push let's go
+          // Current Commit made waiting for push
+//this is a Clear Reminder for you to push it to github, git push let's go
   // Current Commit made waiting for push
 
+
+
   setInitialModalPosition() {
-    // Current Commit made waiting for push
-    //this is a Clear Reminder for you to push it to github, git push let's go
-    // Current Commit made waiting for push
+
+
+      // Current Commit made waiting for push
+        //this is a Clear Reminder for you to push it to github, git push let's go
+      // Current Commit made waiting for push
+
 
     const modalWidth = 400; // Approximate width of the modal
     const modalHeight = 300; // Approximate height of the modal
-
-    // Current Commit made waiting for push
-    //this is a Clear Reminder for you to push it to github, git push let's go
-    // Current Commit made waiting for push
 
     // Calculate centered position before showing the modal
     this.position.left = (window.innerWidth - modalWidth) / 2;
     this.position.top = (window.innerHeight - modalHeight) / 2;
   }
 
-  // Current Commit made waiting for push
-  //this is a Clear Reminder for you to push it to github, git push let's go
-  // Current Commit made waiting for push
+    // Current Commit made waiting for push
+        //this is a Clear Reminder for you to push it to github, git push let's go
+      // Current Commit made waiting for push
+
+
+
 }

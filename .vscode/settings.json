@@ -1,3 +1,25 @@
 {
-    "workbench.colorTheme": "Lilac"
+    "workbench.colorTheme": "Dark Lavender (Tailwind Soft)",
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#008050",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#00805099",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#008050",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#00b370",
+        "statusBarItem.remoteBackground": "#008050",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "activityBar.activeBackground": "#00b370",
+        "activityBar.background": "#00b370",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#f3dfff",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#00b370"
+    },
+    "java.compile.nullAnalysis.mode": "automatic",
+    "peacock.color": "#008050",
+    "coralize.color": "#12a182"
 }
