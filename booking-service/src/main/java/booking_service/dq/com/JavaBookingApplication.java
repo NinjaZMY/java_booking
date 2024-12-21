@@ -12,7 +12,7 @@ public class JavaBookingApplication {
 /*
 	@RequestMapping("/")
 	String home() {
-		return "Hello World!";
+		return "error World!";
 	}
 */
 
