@@ -30,10 +30,14 @@ public class HomeController
     static String log="";
     // This will be the test endpoint
     static String response;
+
+    /**
+     * @return
+     */
     // Method to reload the page based on the 'canReload' flag
     // This will handle the root endpoint and both reload and test functionality
     @GetMapping("/")
-    public ResponseEntity<String> reloadPage() {
+    private ResponseEntity<String> reloadPage() {
         // Return null since we're writing directly to the response
 
         if (canReload) {
@@ -46,19 +50,22 @@ public class HomeController
             log+="<br>"+new ResponseEntity<>(headers, HttpStatus.FOUND);
             log+=test()+"<br>hey hey <script> alert('fuck')</script></div>";
 
-            return  ResponseEntity.ok(response);
         } else {
             // If reloading is disabled, send a message to the client
             
             response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
-            return ResponseEntity.ok(response);
         }
+
+        return ResponseEntity.ok(response);
+
+
+
     }//end of reloadPage() MEthod
 
 
     public static String test() {
 
-        return "<div align=center>hey testing ???? "+canReload;  // A simple response for the root endpoint
+        return "- stuck____here - fumbling update ??   <div align=center>hey testing ???? "+canReload;  // A simple response for the root endpoint
     }
 
 
@@ -81,11 +88,18 @@ public class HomeController
 
         try {
             // Simulate the reload by calling the controller method
-            log+= "<br><script>alert(\"Refreshing... Triggering \") ; " +
-                    "</script><script src=\"livereload.js?port=5500\" ></script>";
+            log+= "<br><script>alert(\" ya wou5ayéni ... Triggering \"); " +
+                    " x='hello'+location.hostname+':35729//livereload.js?snipver=1' ;" +
+//                    " x=livereload.js?snipver=1&port=8081' " +
+                    "y= '<script src=' + x +  '>\\\\<'+'/script>''"+
+                    "onload=()=>document.body.innerHTML+= y;"+
+                    "$0=document.querySelector['script'];" +
+                    "console.log(x,y,$0 ) </script>";
+//                    "<script src=location.hostname+\":35729\"+\"/livereload.js\" ></script>";
+
             reloadPage();
         } catch (Exception e) {
-            throw new RuntimeException("Error ?? triggering reload", e);
+            throw new RuntimeException("Error oh ?? triggering reload", e);
         }
 
 

@@ -20,5 +20,6 @@ public class JavaBookingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JavaBookingApplication.class, args);
 	}
+//        SpringApplication.setRegisterShutdownHook(false)
 
 }
