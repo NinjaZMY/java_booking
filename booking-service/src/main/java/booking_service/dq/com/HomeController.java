@@ -32,7 +32,7 @@ public class HomeController
     static String response;
 
     /**
-     * @return
+//     * @return
      */
     // Method to reload the page based on the 'canReload' flag
     // This will handle the root endpoint and both reload and test functionality
@@ -48,7 +48,7 @@ public class HomeController
             canReload = false;  // Disable further reloads
             headers.add("Location", "/"); // Redirects to the root path
             log+="<br>"+new ResponseEntity<>(headers, HttpStatus.FOUND);
-            log+=test()+"<br>hey hey <script> alert('fuck')</script></div>";
+            log+=test()+"<br>hey hey <script> alert('hey')</script></div>";
 
         } else {
             // If reloading is disabled, send a message to the client
@@ -65,8 +65,10 @@ public class HomeController
 
     public static String test() {
 
-        return "- stuck____here - fumbling update ??   <div align=center>hey testing ???? "+canReload;  // A simple response for the root endpoint
-    }
+        return "- problem solved ?? - fumbling update ?? ??  <div align=center>hey testing ???? "+canReload;  // A simple response for the root endpoint
+//        return "-  problem solved- fumbling update ??   <div align=center>hey testing ???? "+canReload;  // A simple response for the root endpoint
+//        return "- Solved real- fumbling update ??   <div align=center>hey testing ???? "+canReload;  // A simple response for the root endpoint
+    }/**/
 
 
 
@@ -88,13 +90,19 @@ public class HomeController
 
         try {
             // Simulate the reload by calling the controller method
-            log+= "<br><script>alert(\" ya wou5ayéni ... Triggering \"); " +
-                    " x='hello'+location.hostname+':35729//livereload.js?snipver=1' ;" +
+            log+= "<br><script>alert(\" en cours de refresh ... Triggering \"); " +
+                    " x='http://'+location.hostname+':35729/livereload.js?LR-verbose' ;" +
 //                    " x=livereload.js?snipver=1&port=8081' " +
-                    "y= '<script src=' + x +  '>\\\\<'+'/script>''"+
-                    "onload=()=>document.body.innerHTML+= y;"+
-                    "$0=document.querySelector['script'];" +
-                    "console.log(x,y,$0 ) </script>";
+                    "y= '<script src=' + x +  '>\\<'+'/script>';"+
+                     "(async () => {const script = document.createElement('script');"+
+                    "  script.src = x ;"+
+                    "  document.body.append(script);"+
+                    "  await new Promise((res) => script.onload = () => res()); console.log(script);})() </script>";
+                    /*"onload=()=>{document.body.innerHTML+= y;$0=document.querySelectorAll('script');i=$0.length-1; $0=$0[i];" +
+                    "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0 ); $0.onload=()=>console.log('script loaded') }</script>";*/
+//                    "$0=document.querySelectorAll('script');" +
+//                    "i=$0.length-1; $0=$0[i]; "+
+//                    "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0 ) </script>";
 //                    "<script src=location.hostname+\":35729\"+\"/livereload.js\" ></script>";
 
             reloadPage();

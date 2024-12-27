@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Bearded Theme Stained Blue",
+    "workbench.colorTheme": "Bearded Themanopia (Experimental)",
     "workbench.colorCustomizations": {
         "tab.activeBorder": "#30bfa0",
         "titleBar.activeBackground": "#12a182",
@@ -14,5 +14,6 @@
     },
     "java.compile.nullAnalysis.mode": "automatic",
     "peacock.color": "#008050",
-    "coralize.color": "#12a182"
+    "coralize.color": "#12a182",
+    "themeRandomizer.enabled": false
 }
