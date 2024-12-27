@@ -90,14 +90,16 @@ public class HomeController
 
         try {
             // Simulate the reload by calling the controller method
-            log+= "<br><script>alert(\" en cours de refresh ... Triggering \"); " +
+            log+= "<br><script>alert(\" refresh ... Triggering \"); " +
                     " x='http://'+location.hostname+':35729/livereload.js?LR-verbose' ;" +
 //                    " x=livereload.js?snipver=1&port=8081' " +
                     "y= '<script src=' + x +  '>\\<'+'/script>';"+
                      "(async () => {const script = document.createElement('script');"+
                     "  script.src = x ;"+
                     "  document.body.append(script);"+
-                    "  await new Promise((res) => script.onload = () => res()); console.log(script);})() </script>";
+                    "  await new Promise((res) => script.onload = () => res()); })();"+
+                    "$0=document.querySelectorAll('script');i=$0.length-1; $0=$0[i];  "+
+                    "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0 );</script>";
                     /*"onload=()=>{document.body.innerHTML+= y;$0=document.querySelectorAll('script');i=$0.length-1; $0=$0[i];" +
                     "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0 ); $0.onload=()=>console.log('script loaded') }</script>";*/
 //                    "$0=document.querySelectorAll('script');" +
