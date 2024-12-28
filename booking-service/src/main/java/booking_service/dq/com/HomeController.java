@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 /*import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,22 +42,28 @@ public class HomeController
     private ResponseEntity<String> reloadPage() {
         // Return null since we're writing directly to the response
 
-/*        if (canReload) {
-            log+="<br>can Reload";
+        if (canReload) {
+//            log+="can Reload";
 // Trigger a backend-driven page reload by redirecting
                                                 //response.sendRedirect("/");  // Corrected path
-            HttpHeaders headers = new HttpHeaders();
+
             canReload = false;  // Disable further reloads
+            /*HttpHeaders headers = new HttpHeaders();
             headers.add("Location", "/"); // Redirects to the root path
-            log+="<br>"+new ResponseEntity<>(headers, HttpStatus.FOUND);
-            log+=test()+"<br>hey hey <script> alert('hey')</script></div>";
+            log+="<br>"+new ResponseEntity<>(headers, HttpStatus.FOUND);*/
+//            log+=test()+"<br>hey hey <script> alert('first reload');location.reload()</script></div>";
 
         } else {
             // If reloading is disabled, send a message to the client
-            
-            response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
-        }*/
-        response=log;
+            String url="https://catfact.ninja/fact";
+            RestTemplate rt=new RestTemplate();
+            response= rt.getForObject(url,String.class)+"</center>";
+
+//            response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
+            //statement above for debuging purposes
+        }
+
+        response=log+response;
         return ResponseEntity.ok(response);
 
 
@@ -91,8 +98,8 @@ public class HomeController
 
         try {
             // Simulate the reload by calling the controller method
-            log+= "<center>Inside Back-end up</center> <br><script>alert(\" refresh ... Triggering \"); " +
-                    " x='http://'+location.hostname+':35729/livereload.js?LR-verbose' ;" +
+            log+= "<center>Live Inside Back-end app <br><br><script>alert(\" refresh ... Triggering \"); " +
+                    " x='http://'+location.hostname+':35729/livereload.js' ;" +
 //                    " x=livereload.js?snipver=1&port=8081' " +
                     "y= '<script src=' + x +  '>\\<'+'/script>';"+
                      "(async () => {const script = document.createElement('script');"+
@@ -117,6 +124,9 @@ public class HomeController
 
 
     }//end of public onApplicationEvent
+
+
+// @GetMapping("/c")
 
 
 /*
