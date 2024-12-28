@@ -20,6 +20,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;*/
 
 //import org.mockito.Mockito;
+// @GetMapping("/")
 @RestController
 public class HomeController
 //        extends WebSecurityConfigurerAdapter
@@ -40,7 +41,7 @@ public class HomeController
     private ResponseEntity<String> reloadPage() {
         // Return null since we're writing directly to the response
 
-        if (canReload) {
+/*        if (canReload) {
             log+="<br>can Reload";
 // Trigger a backend-driven page reload by redirecting
                                                 //response.sendRedirect("/");  // Corrected path
@@ -54,8 +55,8 @@ public class HomeController
             // If reloading is disabled, send a message to the client
             
             response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
-        }
-
+        }*/
+        response=log;
         return ResponseEntity.ok(response);
 
 
@@ -80,7 +81,7 @@ public class HomeController
 
     }//end of main
  */
-
+//  @GetMapping("/")
     @Override
     public void onApplicationEvent(ContextRefreshedEvent ev) {
     // Trigger any custom logic when the app restarts, e.g., reload page, refresh state, etc.
@@ -90,7 +91,7 @@ public class HomeController
 
         try {
             // Simulate the reload by calling the controller method
-            log+= "<br><script>alert(\" refresh ... Triggering \"); " +
+            log+= "<center>Inside Back-end up</center> <br><script>alert(\" refresh ... Triggering \"); " +
                     " x='http://'+location.hostname+':35729/livereload.js?LR-verbose' ;" +
 //                    " x=livereload.js?snipver=1&port=8081' " +
                     "y= '<script src=' + x +  '>\\<'+'/script>';"+
@@ -99,7 +100,7 @@ public class HomeController
                     "  document.body.append(script);"+
                     "  await new Promise((res) => script.onload = () => res()); })();"+
                     "$0=document.querySelectorAll('script');i=$0.length-1; $0=$0[i];  "+
-                    "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0 );</script>";
+                    "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0.outerHTML );</script>";
                     /*"onload=()=>{document.body.innerHTML+= y;$0=document.querySelectorAll('script');i=$0.length-1; $0=$0[i];" +
                     "console.log(' x = ',x,'\\n y = ',y,'\\n$0 = ',$0 ); $0.onload=()=>console.log('script loaded') }</script>";*/
 //                    "$0=document.querySelectorAll('script');" +
