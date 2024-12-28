@@ -33,6 +33,13 @@ public class HomeController
     // This will be the test endpoint
     static String response;
 
+    public String ConsumeAPI(String url)
+    {
+        url = "https://catfact.ninja/fact";
+        RestTemplate rt = new RestTemplate();
+        return rt.getForObject(url, String.class) + "</center>";
+    }
+
     /**
 //     * @return
      */
@@ -55,10 +62,8 @@ public class HomeController
 
         } else {
             // If reloading is disabled, send a message to the client
-            String url="https://catfact.ninja/fact";
-            RestTemplate rt=new RestTemplate();
-            response= rt.getForObject(url,String.class)+"</center>";
 
+            response = ConsumeAPI("https://catfact.ninja/fact");
 //            response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
             //statement above for debuging purposes
         }
