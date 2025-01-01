@@ -2,6 +2,7 @@ package booking_service.dq.com;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
@@ -33,6 +34,12 @@ public class HomeController
     // This will be the test endpoint
     static String response;
 
+    @GetMapping("/error")
+    public String error()
+    {
+        return "error";
+    }
+
     public String ConsumeAPI(String url)
     {
         url = "https://catfact.ninja/fact";
@@ -45,7 +52,8 @@ public class HomeController
      */
     // Method to reload the page based on the 'canReload' flag
     // This will handle the root endpoint and both reload and test functionality
-    @GetMapping("/")
+//    @GetMapping("/")
+    @RequestMapping("/")
     private ResponseEntity<String> reloadPage() {
         // Return null since we're writing directly to the response
 
@@ -64,11 +72,15 @@ public class HomeController
             // If reloading is disabled, send a message to the client
 
             response = ConsumeAPI("https://catfact.ninja/fact");
-//            response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
+
+/*            String str = "<script> $1=String(" + response + "); console.log('$1 : ',$1 ) </script>";
+            response=str+response;*/
+            //            response= test()+log+"<br>Reloading Disabled!<script> alert('sasuke can reload using only backend');  </script></div>";
             //statement above for debuging purposes
         }
 
-        response=log+response;
+//        response=log+response;
+        response=log+response +"<script>console.log('$1 : ',$1=JSON.parse(document.body.getElementsByTagName(\"center\")[0].innerText.substr(26)))</script>";
         return ResponseEntity.ok(response);
 
 
