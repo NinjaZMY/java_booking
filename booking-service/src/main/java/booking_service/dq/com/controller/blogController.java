@@ -43,7 +43,38 @@ public class blogController {
     public String deleteBlog(@PathVariable int id) {return blogService.deleteBlog(id);}
 
     @PutMapping("/update")
-    public String updateBlog(@RequestBody Blog blog) {  return blogService.updateBlog(blog);}
+    public String updateBlog(@RequestBody Map<String, Object> rawBody)
+    {
+    boolean hasID=rawBody.containsKey("id");
+        if(hasID)
+        {
+            Blog blog = objectMapper.convertValue(rawBody, Blog.class);
+            return blogService.updateBlog(blog);
+        }
+        else
+        {
+            try
+            {
+
+                String queryJson = blogService.to_JSON(rawBody);
+                String ALL_IDS_Json=objectMapper.writeValueAsString(blogService.getAllIds());
+                String blogsJson = objectMapper.writeValueAsString(blogService.getAllBlogs());
+                // Construct the final JSON object as a String
+                String result = "{" +
+                        "  \"message\": \"Identifier Missing > Refer to valid_ids below < \"," +
+                        "  \"query\": " + queryJson + "," +
+                        "  \"valid_ids\": " + ALL_IDS_Json + ","+
+                        "  \"ALL BLOGS\": " + blogsJson +
+                        "}";
+//                String resultJson=objectMapper.writeValueAsString(result);
+                return result;
+            }catch (Exception e) {
+                e.printStackTrace();
+                return "Error converting to JSON";
+            }
+
+        }
+    }
 
     @PutMapping("/update/{id}")
     public String updateBlogByID(@PathVariable int id, @RequestBody Map<String, Object> rawBody )

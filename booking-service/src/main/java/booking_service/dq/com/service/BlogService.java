@@ -2,6 +2,7 @@ package booking_service.dq.com.service;
 
 import booking_service.dq.com.entity.Blog;
 import booking_service.dq.com.repository.BlogRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ public class BlogService {
 
     @Autowired
     BlogRepository repository;
+    ObjectMapper objectMapper; // For JSON parsing
     boolean isContentProvided,isTypeProvided;
     private Blog blog;
 //    @Lazy
@@ -27,6 +29,10 @@ public class BlogService {
     }*/
 
 //@Autowired
+
+    public List<Integer> getAllIds() {
+        return repository.findAllIds();
+    }
 
     public List<Blog> getAllBlogs()
     {
@@ -49,10 +55,21 @@ public class BlogService {
     public String updateBlog(Blog b)
     {
     saveDB( b,isContentProvided, isTypeProvided);
-    return "inshallah sné";
+    return "{'MESSAGE':'inshallah sné', 'UpdatedRow':"+to_JSON(b)+"}";
     }
 
+    public <T> String to_JSON(T s)
+    {
+        try {
+            return objectMapper.writeValueAsString(s);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return "Error converting to JSON";
+        }//end of try - catch Exception e
 
+    }//end of to_JSON function
 
 
 
@@ -60,17 +77,19 @@ public class BlogService {
     {
          if(!isContentProvided || !isTypeProvided)
         {
-            Blog p = directBlogById(c.getId());
+            Optional<Blog> op = getBlogById(c.getId());
+            if(op.isPresent()){
+                Blog p= op.get();
+                if (!isContentProvided) {
+                    String pc = p.getContent();
 
-            if(!isContentProvided) {
-                String pc = p.getContent();
-
-                c.setContent(pc);
-            }//end of if not is content provided
-            if (!isTypeProvided) {
-                String pt=p.getType();
-                c.setType(pt);
-            }//end of if not Type provided
+                    c.setContent(pc);
+                }//end of if not is content provided
+                if (!isTypeProvided) {
+                    String pt = p.getType();
+                    c.setType(pt);
+                }//end of if not Type provided
+            }//end of if Present of p Blog
 
         }//end of no content provided x no type provided
         String log="";
