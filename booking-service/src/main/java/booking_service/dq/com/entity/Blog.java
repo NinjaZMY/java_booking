@@ -15,4 +15,5 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content;
+    private String type;
 }
