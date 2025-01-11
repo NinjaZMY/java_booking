@@ -115,7 +115,11 @@ public class HomeController
 
         try {
             // Simulate the reload by calling the controller method
-            log+= "<center>Live Inside Back-end app <br><br><script>alert(\" refresh ... Triggering \"); " +
+            log+= "<style>body\n" +
+                    "{\n" +
+                    "    background-color:black;\n" +
+                    "    color:white;\n" +
+                    "}</style><center>Live Inside Back-end app <br><br><script>alert(\" refresh ... Triggering \"); " +
                     " x='http://'+location.hostname+':35729/livereload.js' ;" +
 //                    " x=livereload.js?snipver=1&port=8081' " +
                     "y= '<script src=' + x +  '>\\<'+'/script>';"+

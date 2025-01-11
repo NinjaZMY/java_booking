@@ -4,6 +4,8 @@ import booking_service.dq.com.entity.Blog;
 import booking_service.dq.com.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Arrays;
 
 //import javax.annotation.Resource;
@@ -46,56 +48,65 @@ public class BlogService {
 
     public String updateBlog(Blog b)
     {
-    saveDB(b, isContentProvided, isTypeProvided);
+    saveDB( b,isContentProvided, isTypeProvided);
     return "inshallah sné";
     }
 
-    public String saveDB(Blog b, boolean isContentProvided, boolean isTypeProvided)
-    {
-    String log="";
-    String t=b.getType();
-    String[] validValues = {"a", "b", "c"}; // Define the array
-     if (Arrays.asList(validValues).contains(t)) {
-              System.out.println(true);
-        } else {
-            b.setType(validValues[0]);
-        }
-   /* String c= b.getContent();
-    Optional<String> d = Optional.ofNullable(c).flatMap(String::describeConstable);
-    boolean e=d.isPresent();
-    int id = b.getId();
-    Blog P = directBlogById(id);
-    String pc = P.getContent();
-    boolean c0=b.toString().contains("content");
-    log+=" > c : '"+c+"'\n"+"c0 : "+c0+" ; c0=b.toString().contains(\"content\"); \n b : '"+b.toString()+"' ;\n";
 
-        if(e){
-            boolean pc0 = pc == null;
-            if(c0)
-            {
-                if (!pc0 ) {
-                    
-                    b.setContent(c);
-            
-                }//end of not pc0 before else
-                else
-                {//if pc0
-                b.setContent(c);
-                }//endof not empty;
-            }//end of if c0
-        }
-        else
+
+
+
+    public String insideSaveDB( Blog c, boolean isContentProvided, boolean isTypeProvided)
+    {
+         if(!isContentProvided || !isTypeProvided)
         {
-            if(c0)
-            {b.setContent(c);}
-            else
-            {
-            b.setContent(pc);
-            }//end of not c0     
-        }//endof if e*/
-    log="> b : '"+b+"'";
-    repository.save(b);
+            Blog p = directBlogById(c.getId());
+
+            if(!isContentProvided) {
+                String pc = p.getContent();
+
+                c.setContent(pc);
+            }//end of if not is content provided
+            if (!isTypeProvided) {
+                String pt=p.getType();
+                c.setType(pt);
+            }//end of if not Type provided
+
+        }//end of no content provided x no type provided
+        String log="";
+        String t=c.getType();
+        String[] validValues = {"a", "b", "c"}; // Define the array
+        if (Arrays.asList(validValues).contains(t)) {
+            System.out.println(true);
+        } else {
+            c.setType(validValues[0]);
+        }//end of ARRAYS HAS VALiD VALUES
+
+        log="> b : '"+c+"'";
+        repository.save(c);
         return log;
+    }//end of insideSAVEDB
+
+
+    /*public String insideSaveDB( Blog c, boolean isContentProvided, boolean isTypeProvided)
+    {
+
+    }*/
+
+    public String saveDB( Blog c, boolean isContentProvided, boolean isTypeProvided)
+    {
+
+
+
+        return insideSaveDB(c,isContentProvided,isTypeProvided);
+
+    }//end of saveDB without int
+
+    public String saveDB( int id, Blog c, boolean isContentProvided, boolean isTypeProvided)
+    {
+        c.setId(id);
+
+        return insideSaveDB(c,isContentProvided,isTypeProvided);
     }
 
 
@@ -109,37 +120,24 @@ public class BlogService {
     }
 
     public String updateBlogByID(int id, Blog c, boolean isContentProvided, boolean isTypeProvided) {
-        Optional<Blog> b=getBlogById(id);
-        // {id : id , content : c }
-        if(b.isPresent())
-        {
-        c.setId(id);
-            if(!isContentProvided || !isTypeProvided)
-            {
-            Blog p = directBlogById(id);
 
-                if(!isContentProvided) {
-                    String pc = p.getContent();
+        return __DB_save_parent_(id,c,isContentProvided,isTypeProvided);
 
-                    c.setContent(pc);
-                }//end of if not is content provided
-                if (!isTypeProvided) {
-                    String pt=p.getType();
-                    c.setType(pt);
-                }//end of if not Type provided
-
-            }//end of no content provided x no type provided
-
-
-/*         Blog B =b.get();
-         B.setContent(c.getContent());
-         B.setType(c.getType());*/
-        String s=saveDB(c,isContentProvided,isTypeProvided);
-        return "Mamacita"+s;
-        }//end of if b.isPresent()
-        return "oumourek mate3jebesh";
     } // end of UpdateBlogByID
 
+
+    public String __DB_save_parent_(int id, Blog c, boolean isContentProvided, boolean isTypeProvided)
+    {
+    Optional<Blog> b=getBlogById(id);
+    // {id : id , content : c }
+        if(b.isPresent())
+        {
+            String s=saveDB(id,c,isContentProvided,isTypeProvided);
+            return "Mamacita"+s;
+        }//end of if b.isPresent()
+
+    return "oumourek mate3jebesh";
+    }//end of DB SAve PArent using id
 
 
 }//end of BlogService.java
