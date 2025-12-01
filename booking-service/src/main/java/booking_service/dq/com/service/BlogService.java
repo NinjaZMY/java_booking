@@ -47,6 +47,7 @@ public class BlogService {
     return "Blog Saved";
     }
 
+
     public String deleteBlog(int id) {
         repository.deleteById(id);
         return "Blog Saven't";
@@ -89,6 +90,9 @@ public class BlogService {
                     String pt = p.getType();
                     c.setType(pt);
                 }//end of if not Type provided
+            else{//else if p isn't present
+                c.setId(c.getId());
+                
             }//end of if Present of p Blog
 
         }//end of no content provided x no type provided
