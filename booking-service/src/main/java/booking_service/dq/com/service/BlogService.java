@@ -79,8 +79,9 @@ public class BlogService {
          if(!isContentProvided || !isTypeProvided)
         {
             Optional<Blog> op = getBlogById(c.getId());
-            if(op.isPresent()){
-                Blog p= op.get();
+            if(op.isPresent()) 
+            {
+                Blog p = op.get();
                 if (!isContentProvided) {
                     String pc = p.getContent();
 
@@ -90,7 +91,9 @@ public class BlogService {
                     String pt = p.getType();
                     c.setType(pt);
                 }//end of if not Type provided
-            else{//else if p isn't present
+            }
+            else
+            {//else if p isn't present
                 c.setId(c.getId());
                 
             }//end of if Present of p Blog
