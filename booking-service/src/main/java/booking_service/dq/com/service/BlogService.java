@@ -92,11 +92,11 @@ public class BlogService {
                     c.setType(pt);
                 }//end of if not Type provided
             }
-            else
+/*            else
             {//else if p isn't present
                 c.setId(c.getId());
                 
-            }//end of if Present of p Blog
+            }//end of if Present of p Blog*/
 
         }//end of no content provided x no type provided
         String log="";
@@ -114,7 +114,8 @@ public class BlogService {
     }//end of insideSAVEDB
 
 
-    /*public String insideSaveDB( Blog c, boolean isContentProvided, boolean isTypeProvided)
+    /*
+    public String insideSaveDB( Blog c, boolean isContentProvided, boolean isTypeProvided)
     {
 
     }*/
