@@ -15,5 +15,6 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "peacock.color": "#008050",
     "coralize.color": "#12a182",
-    "themeRandomizer.enabled": false
+    "themeRandomizer.enabled": false,
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
