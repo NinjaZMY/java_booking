@@ -43,8 +43,8 @@ public class BlogService {
 
     public String saveBlog(Blog b)
     {
-    saveDB(b, isContentProvided, isTypeProvided);
-    return "Blog Saved";
+    String log=saveDB(b, isContentProvided, isTypeProvided);
+    return log+"\n"+"Blog Saved";
     }
 
 
@@ -99,7 +99,8 @@ public class BlogService {
             }//end of if Present of p Blog*/
 
         }//end of no content provided x no type provided
-        String log="";
+//        String log="";
+        String log;
         String t=c.getType();
         String[] validValues = {"a", "b", "c"}; // Define the array
         if (Arrays.asList(validValues).contains(t)) {
